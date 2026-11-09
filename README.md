@@ -4,7 +4,7 @@ A native Android build of a self-contained HTML photo-gallery UI. The entire int
 44 KB HTML file (liquid-glass tab bar, viewer, and a full non-destructive editor); this repository wraps it in a small Java WebView shell so it installs and launches like a
 normal app — no browser chrome, no network, no permissions beyond vibration.
 
-**Download:** [Photos.apk](https://github.com/technicalnihilist-lgtm/photos-android/releases/latest) (90 KB, Android 7.0+, v1.1)
+**Download:** [Photos.apk](https://github.com/technicalnihilist-lgtm/photos-android/releases/latest) (90 KB, Android 7.0+, v1.2)
 
 <p align="center">
   <img src="screenshots/01-library.png" width="200" alt="Library grid">
@@ -36,7 +36,7 @@ photographs ship with the app.
 | Behaviour | Implementation |
 | --- | --- |
 | Page hosting | Full-screen `WebView` loading `file:///android_asset/index.html` |
-| Edge-to-edge | `setDecorFitsSystemWindows(false)` + system-bar insets applied as view padding, `shortEdges` cutout mode |
+| Edge-to-edge | `setDecorFitsSystemWindows(false)` + system-bar insets applied as padding on a wrapper view around the WebView, `shortEdges` cutout mode |
 | Back button | `onBackPressed` → `window.__back()` in the page, which closes menu → info sheet → editor → viewer in order, then exits |
 | Share | `AndroidBridge.share()` (`@JavascriptInterface`) opens the real `ACTION_SEND` chooser; a shim exposes it as `navigator.share` |
 | Theme | `uiMode` config change switches bar icons and window background; the page's `prefers-color-scheme` follows automatically |
