@@ -16,10 +16,12 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
 
 public class MainActivity extends Activity {
 
     private WebView web;
+    private FrameLayout root;
     private boolean night;
 
     @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
@@ -75,7 +77,15 @@ public class MainActivity extends Activity {
         web.setWebViewClient(new WebViewClient());
         web.addJavascriptInterface(new Bridge(), "AndroidBridge");
 
-        web.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+        // The WebView paints its content over its own padding, so the safe-area
+        // insets are applied to a wrapper instead: the WebView's bounds then sit
+        // inside the status/navigation bars and nothing is drawn underneath them.
+        root = new FrameLayout(this);
+        root.setBackgroundColor(night ? Color.BLACK : Color.WHITE);
+        root.addView(web, new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+
+        root.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
             @Override
             public WindowInsets onApplyWindowInsets(View v, WindowInsets insets) {
                 int t, b, l, r;
@@ -100,7 +110,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        setContentView(web);
+        setContentView(root);
         web.loadUrl("file:///android_asset/index.html");
     }
 
@@ -133,6 +143,9 @@ public class MainActivity extends Activity {
         super.onConfigurationChanged(cfg);
         night = (cfg.uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
         web.setBackgroundColor(night ? Color.BLACK : Color.WHITE);
+        if (root != null) {
+            root.setBackgroundColor(night ? Color.BLACK : Color.WHITE);
+        }
         applyBarIcons();
     }
 
