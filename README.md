@@ -5,7 +5,7 @@ A native Android build of a self-contained HTML photo-gallery UI. The entire int
 editor); this repository wraps it in a small Java WebView shell so it installs and launches like a
 normal app — no browser chrome, no network, no permissions beyond vibration.
 
-**Download:** [Photos.apk](../../releases/latest) (91 KB, Android 7.0+)
+**Download:** [Photos.apk](https://github.com/technicalnihilist-lgtm/photos-android/releases/latest) (91 KB, Android 7.0+)
 
 <p align="center">
   <img src="screenshots/01-library.png" width="200" alt="Library grid">
