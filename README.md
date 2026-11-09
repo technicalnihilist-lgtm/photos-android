@@ -1,5 +1,9 @@
 # Photos — Android APK
 
+<p align="center">
+  <img src="store/icon-512.png" width="96" alt="App icon">
+</p>
+
 A native Android build of a self-contained HTML photo-gallery UI. The entire interface is one
 44 KB HTML file (liquid-glass tab bar, viewer, and a full non-destructive editor); this repository wraps it in a small Java WebView shell so it installs and launches like a
 normal app — no browser chrome, no network, no permissions beyond vibration.
@@ -7,19 +11,19 @@ normal app — no browser chrome, no network, no permissions beyond vibration.
 **Download:** [Photos.apk](https://github.com/technicalnihilist-lgtm/photos-android/releases/latest) (90 KB, Android 7.0+, v1.3)
 
 <p align="center">
-  <img src="screenshots/01-library.png" width="200" alt="Library grid">
+  <img src="screenshots/01-library.png" width="200" alt="Library">
   <img src="screenshots/02-collections.png" width="200" alt="Collections">
   <img src="screenshots/03-search.png" width="200" alt="Search">
 </p>
 <p align="center">
-  <img src="screenshots/04-viewer.png" width="200" alt="Viewer">
-  <img src="screenshots/05-edit.png" width="200" alt="Editor">
-  <img src="screenshots/06-dark.png" width="200" alt="Dark mode">
+  <img src="screenshots/04-library-dark.png" width="200" alt="Library, dark">
+  <img src="screenshots/05-collections-dark.png" width="200" alt="Collections, dark">
+  <img src="screenshots/06-search-dark.png" width="200" alt="Search, dark">
 </p>
 
 ## What it does
 
-- **Library** — three-column grid with Months / Days / All grouping, favourite markers and counts.
+- **Library** — three-column grid with Months / Days / All grouping, favourite markers and counts (ships empty).
 - **Collections** — albums generated from the same seed (Favorites, Sunset, Night, Hills, Ocean, Flowers).
 - **Search** — live filtering with suggestion chips.
 - **Viewer** — full-screen photo, date pill, share / favourite / info / edit / delete controls.
