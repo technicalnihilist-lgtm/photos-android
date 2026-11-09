@@ -1,11 +1,10 @@
 # Photos — Android APK
 
 A native Android build of a self-contained HTML photo-gallery UI. The entire interface is one
-44 KB HTML file (procedural canvas artwork, liquid-glass tab bar, viewer, and a full non-destructive
-editor); this repository wraps it in a small Java WebView shell so it installs and launches like a
+44 KB HTML file (liquid-glass tab bar, viewer, and a full non-destructive editor); this repository wraps it in a small Java WebView shell so it installs and launches like a
 normal app — no browser chrome, no network, no permissions beyond vibration.
 
-**Download:** [Photos.apk](https://github.com/technicalnihilist-lgtm/photos-android/releases/latest) (91 KB, Android 7.0+)
+**Download:** [Photos.apk](https://github.com/technicalnihilist-lgtm/photos-android/releases/latest) (90 KB, Android 7.0+, v1.1)
 
 <p align="center">
   <img src="screenshots/01-library.png" width="200" alt="Library grid">
@@ -29,8 +28,8 @@ normal app — no browser chrome, no network, no permissions beyond vibration.
   (Safari gets blur + specular; Chromium/WebView also gets true refraction).
 - **Dark mode** — follows the system theme, with status-bar icons switched to match.
 
-Everything is offline. The photographs are drawn procedurally on a canvas at runtime, so the APK is
-under 100 KB and needs no image assets.
+Everything is offline and the APK is under 100 KB. The library starts **empty** — no demo or sample
+photographs ship with the app.
 
 ## Native shell (what the Java adds)
 
