@@ -108,23 +108,8 @@ sh:'<path d="M12 15V3M8 7l4-4 4 4M6 11H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h14a2 2 0 
 in:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.500v.01"/>',
 tr:'<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>',bk:'<path d="M15 5l-7 7 7 7"/>',dt:'<g fill="currentColor" stroke="none"><circle cx="5" cy="12" r="1.800"/><circle cx="12" cy="12" r="1.800"/><circle cx="19" cy="12" r="1.800"/></g>',ad:'<path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/>'},
 ic=k=>`<svg viewBox="0 0 24 24">${I[k]}</svg>`;
-/* ---- generate photos procedurally (no network) ---- */
-let seed=11;const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
-const T={Sunset:{s:[['#ffb36b','#ff6a85','#4b2a7b'],['#ffd27a','#f2709c','#6a3fa0']],h:['#3a1f5c','#2a1546'],sun:1},
-Night:{s:[['#0b1030','#1c2a6b','#4a3a8a']],h:['#0a0a1e','#050514'],st:1,sun:1},
-Hills:{s:[['#9fd8ff','#e6f6ff','#fff3c9']],h:['#7cc05a','#4a9a3d','#2f7a33'],sun:1},
-Ocean:{s:[['#7fd1ff','#2aa7d8','#0b5d8f']],h:['#0f6aa0','#0a4f80'],w:1},
-Flowers:{s:[['#ffe3ee','#f9c6dd','#d9b8f2']],b:1}},names=Object.keys(T);
-function art(n,i){const W=360,H=480,c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d'),t=T[n],p=t.s[i%t.s.length],g=x.createLinearGradient(0,0,0,H);
-p.forEach((v,k)=>g.addColorStop(k/(p.length-1),v));x.fillStyle=g;x.fillRect(0,0,W,H);
-if(t.st)for(let k=0;k<70;k++){x.fillStyle=`rgba(255,255,255,${rnd()})`;x.fillRect(rnd()*W,rnd()*H*.6,1.5,1.5)}
-if(t.sun){const sx=W*(.2+rnd()*.6),sy=H*(.25+rnd()*.25),r=x.createRadialGradient(sx,sy,0,sx,sy,130);r.addColorStop(0,'rgba(255,245,210,.95)');r.addColorStop(1,'rgba(255,200,150,0)');x.fillStyle=r;x.fillRect(0,0,W,H);x.fillStyle=n=='Night'?'#f4f1e6':'#fff6d8';x.beginPath();x.arc(sx,sy,n=='Night'?20:26,0,7);x.fill()}
-if(t.h)t.h.forEach((col,k)=>{x.fillStyle=col;x.beginPath();x.moveTo(0,H);const y=H*(.6+k*.1),a=16+rnd()*28,f=.006+rnd()*.01,q=rnd()*6;for(let X=0;X<=W;X+=6)x.lineTo(X,y+Math.sin(X*f+q)*a+Math.sin(X*f*2.3+q)*a*.4);x.lineTo(W,H);x.fill()});
-if(t.w)for(let k=0;k<16;k++){x.strokeStyle='rgba(255,255,255,.16)';x.lineWidth=2;x.beginPath();for(let X=0;X<=W;X+=8)x[X?'lineTo':'moveTo'](X,H*.62+k*14+Math.sin(X*.04+k)*4);x.stroke()}
-if(t.b)for(let b=0;b<3;b++){const px=rnd()*W,ex=px+(rnd()-.5)*200,ey=H*.25+rnd()*H*.2;x.strokeStyle='#5a3b3b';x.lineWidth=3;x.beginPath();x.moveTo(px,H);x.quadraticCurveTo(px,H*.6,ex,ey);x.stroke();
-for(let k=0;k<16;k++){const u=rnd();x.fillStyle=`hsla(${320+rnd()*30},80%,${75+rnd()*15}%,.9)`;x.beginPath();x.arc(px+(ex-px)*u+(rnd()-.5)*50,H+(ey-H)*u+(rnd()-.5)*50,6+rnd()*9,0,7);x.fill()}}
-const t1=document.createElement('canvas');t1.width=t1.height=4;const q=t1.getContext('2d');q.drawImage(c,0,0,4,4);const z=q.getImageData(0,0,4,4).data;let ls=0;for(let i=0;i<64;i+=4)ls+=(.299*z[i]+.587*z[i+1]+.114*z[i+2])/255;art.lum=ls/16;return c.toDataURL('image/jpeg',.8)}
-const now=Date.now();let P=Array.from({length:48},(_,i)=>{const n=names[Math.floor(rnd()*5)];return{id:i,tag:n,url:art(n,i),lum:art.lum,fav:i%7==0,d:new Date(now-i*i*3e6-i*4e7-rnd()*3e7)}});
+/* ---- no bundled demo photos: the library starts empty ---- */
+const names=['Sunset','Night','Hills','Ocean','Flowers'];let P=[];
 let tab=0,mode='All',q='',alb=null,cur=P,ci=0,rows=0;
 const fm=(d,o)=>d.toLocaleDateString('en-US',o);
 function grid(l,m){const cols={Months:5,Days:3,All:3}[m];let h='',last=null;
