@@ -84,3 +84,17 @@ screenshots/                              rendered from the page at 412x915
 - The page was authored as an HTML prototype; this repository adds only the native shell, the build
   pipeline and the packaging — the UI logic is unchanged apart from an appended 20-line shim for
   back-button and share bridging.
+
+---
+
+## ☕ Donate / Buy me a coffee
+
+**Coming soon** — our donation options are on the way.
+
+| Platform | Status |
+| --- | --- |
+| Paytm | Coming soon |
+| PayPal | Coming soon |
+| GPay (Google Pay) | Coming soon |
+
+If you like our work, you can support us with a donation. We are bringing this very soon — **coming soon**.
